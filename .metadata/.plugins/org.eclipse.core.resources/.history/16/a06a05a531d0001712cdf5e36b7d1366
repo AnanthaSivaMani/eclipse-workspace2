@@ -1,0 +1,32 @@
+package in.vamsoft.test;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+
+import in.vamsoft.model.Employee;
+
+public class HibernateTest {
+
+	public static void main(String[] args) {
+	
+		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+		Session session=sessionFactory.openSession();
+		Transaction transaction=session.beginTransaction();
+//		Employee employee=new Employee(207, "siva", 12456, LocalDate.now(),10);
+//		int pk=(int)session.save(employee);
+		LinkedList<Employee> employees=session.createCriteria(Employee.class).list();
+		System.out.println(employees.get(78).getEmpName());
+		transaction.commit();
+		
+		
+
+	}
+
+}

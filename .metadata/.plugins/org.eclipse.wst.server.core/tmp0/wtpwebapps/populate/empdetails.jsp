@@ -1,0 +1,68 @@
+<%@page import="in.vamsoft.model.Employee"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="sorttable.js"></script>
+  <style type="text/css">
+  th{
+ text-align: center; 
+ }
+  </style>
+  <script type="text/javascript">
+  function showConfirm(){
+	  var txt;
+	  var r = confirm("Are you sure?");
+	  if (r == true) {
+	    return true;
+	  } else {
+		  return false;
+	  }
+ 
+  }
+
+  </script>
+  
+  
+</head>
+<body>
+<%-- <% --%>
+// List<Employee> employees=(List<Employee>)session.getAttribute("employees");
+<%-- %> --%>
+
+<table class="table table-bordered">
+<tr><th>EMPLOYEE_ID</th>
+<th>EMPLOYEE_NAME</th>
+<th>SALARY</th>
+<th>HIRE_DATE</th>
+<th>DEPARTEMNT_ID</th>
+<th colspan="3">OPTIONS</th>
+</tr>
+
+<c:forEach items="${sessionScope.employees}" var="employee">
+	<tr>
+	<td>${employee.empId}</td>
+	<td>${employee.empName }</td>
+	<td>${employee.salary }</td>
+	<td>${employee.doj }</td>
+	<td>${employee.deptId }</td>
+	<td><a href="UpdateServlet?empId=${employee.empId}">Update</a></td>
+	<td><form action="DeleteServlet?empId=${employee.empId}&&deptId=${employee.deptId }&&test=test" onsubmit="showConfirm()">
+	
+	
+	<input type="submit" value="Delete"></form></td>
+	<td><a href="DeleteServlet?empId=${employee.empId}&&deptId=${employee.deptId }" >Delete</a></td>
+	</tr>
+	
+</c:forEach>
+</table>
+</body>
+</html>

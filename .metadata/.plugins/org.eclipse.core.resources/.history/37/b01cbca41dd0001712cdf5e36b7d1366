@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function fetch() {
+	//alert("ok");
+ var name=document.getElementById("text_box").value;
+ if(name="siva"){
+	 document.write("Welcome "+name);
+ }
+document.write(name);
+}
+
+</script>
+
+</head>
+<body>
+<form >
+<input type="text" id="text_box"/>
+<input type="submit" onclick="fetch()">
+
+</form>
+</body>
+</html>
